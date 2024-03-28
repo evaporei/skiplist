@@ -17,3 +17,7 @@ func (l *LinkedList[T]) Push(value T) {
     l.Value = value
     l.Next = oldNode
 }
+
+func (l *LinkedList[T]) Pop() {
+    *l = *l.Next
+}
