@@ -7,5 +7,7 @@ import (
 
 func main() {
     l := linkedlist.New(2)
-    fmt.Println("linkedlist", l)
+    l.Push(4)
+    fmt.Println("first", l)
+    fmt.Println("next", l.Next)
 }
