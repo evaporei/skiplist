@@ -8,11 +8,11 @@ import (
 func main() {
     l := linkedlist.New(2)
     l.Push(4)
-    fmt.Println("first", l) // { value: 4, next: { value: 2, next: nil } }
-    fmt.Println("next", l.Next()) // { value: 2, next: nil }
+    fmt.Println("first", l.Value()) // 4
+    fmt.Println("next", l.Next().Value()) // 2
 
     fmt.Println("Pop()")
     l.Pop()
-    fmt.Println("first", l) // { value: 2, next: nil }
+    fmt.Println("first", l.Value()) // 2
     fmt.Println("next", l.Next()) // nil
 }
