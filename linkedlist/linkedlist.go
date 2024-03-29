@@ -13,35 +13,60 @@ func new[T any](value T) *Node[T] {
 }
 
 type LinkedList[T any] struct {
-    last *Node[T]
+    head *Node[T]
 }
 
 func New[T any](value T) *LinkedList[T] {
     node := new(value)
     return &LinkedList[T] {
-        last: node,
+        head: node,
     }
 }
 
+// O(n)
 func (l *LinkedList[T]) Push(value T) {
-    oldNode := &Node[T] {
-        value: l.last.value,
-        next: l.last.next,
+    curr := l.head
+
+    for curr.next != nil {
+        curr = curr.next
     }
-    l.last.value = value
-    l.last.next = oldNode
+
+    newNode := new(value)
+    curr.next = newNode
 }
 
+// O(n)
 func (l *LinkedList[T]) Pop() {
-    *l.last = *l.last.next
+    curr := l.head
+    var prev *Node[T] = nil
+
+    for curr.next != nil {
+        prev = curr
+        curr = curr.next
+    }
+
+    prev.next = nil
 }
 
 func (l *LinkedList[T]) Value() T {
-    return l.last.value
+    return l.head.value
 }
 
 func (l *LinkedList[T]) Next() *LinkedList[T] {
     return &LinkedList[T] {
-        last: l.last.next,
+        head: l.head.next,
+    }
+}
+
+// O(n)
+func (l *LinkedList[T]) Last() *LinkedList[T] {
+    curr := l.head
+
+    for curr.next != nil {
+        curr = curr.next
+    }
+
+    return &LinkedList[T] {
+        head: curr,
     }
 }
