@@ -1,11 +1,11 @@
 package linkedlist
 
-type LinkedList[T interface{}] struct {
+type LinkedList[T any] struct {
     Value T
     Next *LinkedList[T]
 }
 
-func New[T interface{}](value T) *LinkedList[T] {
+func New[T any](value T) *LinkedList[T] {
     return &LinkedList[T] {
         Value: value,
         Next: nil,
