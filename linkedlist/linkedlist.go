@@ -13,31 +13,31 @@ func new[T any](value T) *Node[T] {
 }
 
 type LinkedList[T any] struct {
-    head *Node[T]
+    last *Node[T]
 }
 
 func New[T any](value T) *LinkedList[T] {
     return &LinkedList[T] {
-        head: new(value),
+        last: new(value),
     }
 }
 
 func (l *LinkedList[T]) Push(value T) {
-    oldNode := new(l.head.value)
-    l.head.value = value
-    l.head.next = oldNode
+    oldNode := new(l.last.value)
+    l.last.value = value
+    l.last.next = oldNode
 }
 
 func (l *LinkedList[T]) Pop() {
-    *l.head = *l.head.next
+    *l.last = *l.last.next
 }
 
 func (l *LinkedList[T]) Value() T {
-    return l.head.value
+    return l.last.value
 }
 
 func (l *LinkedList[T]) Next() *LinkedList[T] {
     return &LinkedList[T] {
-        head: l.head.next,
+        last: l.last.next,
     }
 }
