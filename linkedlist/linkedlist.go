@@ -2,22 +2,26 @@ package linkedlist
 
 type LinkedList[T any] struct {
     Value T
-    Next *LinkedList[T]
+    next *LinkedList[T]
 }
 
 func New[T any](value T) *LinkedList[T] {
     return &LinkedList[T] {
         Value: value,
-        Next: nil,
+        next: nil,
     }
 }
 
 func (l *LinkedList[T]) Push(value T) {
     oldNode := New(l.Value)
     l.Value = value
-    l.Next = oldNode
+    l.next = oldNode
 }
 
 func (l *LinkedList[T]) Pop() {
-    *l = *l.Next
+    *l = *l.next
+}
+
+func (l *LinkedList[T]) Next() *LinkedList[T] {
+    return l.next
 }
