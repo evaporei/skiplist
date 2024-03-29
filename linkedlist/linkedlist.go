@@ -17,13 +17,17 @@ type LinkedList[T any] struct {
 }
 
 func New[T any](value T) *LinkedList[T] {
+    node := new(value)
     return &LinkedList[T] {
-        last: new(value),
+        last: node,
     }
 }
 
 func (l *LinkedList[T]) Push(value T) {
-    oldNode := new(l.last.value)
+    oldNode := &Node[T] {
+        value: l.last.value,
+        next: l.last.next,
+    }
     l.last.value = value
     l.last.next = oldNode
 }
